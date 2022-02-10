@@ -11,6 +11,8 @@ export const Concept = (props) => {
           </div>
           <div className="col-xs-12 col-md-6 intro-text">
             <p>{props.data ? props.data.paragraph1 : "Loading"}</p>
+            <p>{props.data ? props.data.paragraph2 : "Loading"}</p>
+            <p>{props.data ? props.data.paragraph2 : "Loading"}</p>
           </div>
         </div>
       </div>
