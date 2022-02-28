@@ -50,13 +50,13 @@ function App() {
         type: "donut",
       },
       labels: [
-        "Staking Rewards : 15%",
-        "Game Ecosystem : 30%",
-        "Initial Liquidity : 10%",
-        "IEO/Public sale : 5%",
-        "Airdop to NFT holders : 15%",
-        "Marketing/Partnership : 10%",
-        "Team : 15%",
+        "Staking Rewards",
+        "Game Ecosystem",
+        "Initial Liquidity",
+        "IEO/Public sale",
+        "Airdop to NFT holders",
+        "Marketing/Partnership",
+        "Team",
       ],
       responsive: [
         {
