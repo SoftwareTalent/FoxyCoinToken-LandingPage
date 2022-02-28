@@ -21,7 +21,8 @@
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "cross-env ASSET_PREFIX=/metaplex/ yarn build && yarn deploy:gh"
   },
   "eslintConfig": {
     "extends": [
