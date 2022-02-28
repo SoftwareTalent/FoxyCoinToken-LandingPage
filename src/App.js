@@ -44,11 +44,20 @@ function App() {
 
   const [activeTab, setActiveTab] = useState("left");
   const [chartData, setChartData] = useState({
-    series: [44, 55, 41, 17, 15],
+    series: [15, 30, 10, 5, 15, 10, 15],
     options: {
       chart: {
         type: "donut",
       },
+      labels: [
+        "Staking Rewards : 15%",
+        "Game Ecosystem : 30%",
+        "Initial Liquidity : 10%",
+        "IEO/Public sale : 5%",
+        "Airdop to NFT holders : 15%",
+        "Marketing/Partnership : 10%",
+        "Team : 15%",
+      ],
       responsive: [
         {
           breakpoint: 480,
@@ -454,7 +463,7 @@ function App() {
                 },
               }}
             >
-              <div className="mx-auto w-4/5">
+              <div className="mx-auto w-5/5">
                 <div>
                   {/* <img src={FoxycoinChart} alt="foxycoin chart" /> */}
                   <Chart
