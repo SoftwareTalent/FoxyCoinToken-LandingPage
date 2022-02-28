@@ -37,80 +37,96 @@ import Paragraph from "./components/elements/Typography/Paragraph";
 
 // 3rd Party
 import { motion } from "framer-motion/dist/framer-motion";
+import Chart from "react-apexcharts";
 
 function App() {
   const isMobile = window.innerWidth < 768;
 
-  const variants_right = {
-    offscreen: {
-      x: isMobile ? "50%" : "90%",
-    },
-    onscreen: {
-      x: 0,
-      transition: {
-        type: "spring",
-        duration: 0.7,
-      },
-    },
-  };
-
-  const variants_left = {
-    offscreen: {
-      x: isMobile ? "-50%" : "-90%",
-    },
-    onscreen: {
-      x: 0,
-      transition: {
-        type: "spring",
-        duration: 0.7,
-      },
-    },
-  };
-
   const [activeTab, setActiveTab] = useState("left");
+  const [chartData, setChartData] = useState({
+    series: [44, 55, 41, 17, 15],
+    options: {
+      chart: {
+        type: "donut",
+      },
+      responsive: [
+        {
+          breakpoint: 480,
+          options: {
+            chart: {
+              width: 200,
+            },
+            legend: {
+              position: "bottom",
+            },
+          },
+        },
+      ],
+    },
+  });
 
   return (
     <main className="max-w-full min-h-screen bg-secondary font-Sanchez overflow-x-hidden">
       <Header />
       <section className="max-w-300 mx-auto pt-20 pb-9 px-4 md:px-8" id="home">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8 items-center">
+          {/* <motion.div
+            viewport={{ once: true, amount: 0.2 }}
+            initial="offscreen"
+            whileInView="onscreen"
+            variants={{
+              offscreen: {
+                x: isMobile ? "-50%" : "-90%",
+              },
+              onscreen: {
+                x: 0,
+                transition: {
+                  type: "spring",
+                  duration: 0.6,
+                },
+              },
+            }}
+          > */}
+          <div className="flex flex-1 justify-center md:justify-start">
+            <div className="flex flex-col justify-center text-center pt-5 pb-5 md:text-left">
+              <Heading variants={"h1"}>Let the Adventure Begin..</Heading>
+              <Paragraph className="pb-9 pt-1 max-w-md text-white">
+                Welcome to the SouloFox token page!.
+              </Paragraph>
+              <div className="flex justify-center md:justify-start">
+                <a
+                  href="#"
+                  className="flex gap-2 justify-center items-center transition-all bg-primary hover:bg-primary-dark text-sm text-black font-bold py-2 px-4 rounded-sm tracking-wide w-full mt-5"
+                >
+                  Get Started
+                </a>
+              </div>
+            </div>
+          </div>
+          {/* </motion.div>
           <motion.div
             viewport={{ once: true, amount: 0.2 }}
             initial="offscreen"
             whileInView="onscreen"
-            variants={variants_left}
-          >
-            <div className="flex flex-1 justify-center md:justify-start">
-              <div className="flex flex-col justify-center text-center pt-5 pb-5 md:text-left">
-                <Heading variants={"h1"}>
-                  Let thetext-center Adventure Begin..
-                </Heading>
-                <Paragraph className="pb-9 pt-1 max-w-md text-white">
-                  Welcome to the SouloFox token page!.
-                </Paragraph>
-                <div className="flex justify-center md:justify-start">
-                  <a
-                    href="#"
-                    className="flex gap-2 justify-center items-center transition-all bg-primary hover:bg-primary-dark text-sm text-black font-bold py-2 px-4 rounded-sm tracking-wide w-full mt-5"
-                  >
-                    Get Started
-                  </a>
-                </div>
-              </div>
+            variants={{
+              offscreen: {
+                x: isMobile ? "50%" : "90%",
+              },
+              onscreen: {
+                x: 0,
+                transition: {
+                  type: "spring",
+                  duration: 0.6,
+                },
+              },
+            }}
+          > */}
+          <div className="flex justify-center flex-1 md:justify-end">
+            <div className="max-w-lg">
+              <img src={LandBanner} alt="" />
             </div>
-          </motion.div>
-          <motion.div
-            viewport={{ once: true, amount: 0.2 }}
-            initial="offscreen"
-            whileInView="onscreen"
-            variants={variants_right}
-          >
-            <div className="flex justify-center flex-1 md:justify-end">
-              <div className="max-w-lg">
-                <img src={LandBanner} alt="" />
-              </div>
-            </div>
-          </motion.div>
+          </div>
+          {/* </motion.div> */}
         </div>
       </section>
 
@@ -122,7 +138,7 @@ function App() {
         <div>
           <div>
             <Heading variants="h2" className="text-center">
-              Project Concepttext-center{" "}
+              Project Concept
             </Heading>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8">
@@ -130,7 +146,19 @@ function App() {
               viewport={{ once: true, amount: 0.2 }}
               initial="offscreen"
               whileInView="onscreen"
-              variants={variants_left}
+              variants={{
+                offscreen: {
+                  x: isMobile ? "-50%" : "-90%",
+                },
+                onscreen: {
+                  x: 0,
+                  transition: {
+                    type: "spring",
+                    duration: 1,
+                    delay: 0.1,
+                  },
+                },
+              }}
             >
               <div className="flex flex-1 justify-center items-center lg:justify-start">
                 <div>
@@ -142,7 +170,19 @@ function App() {
               viewport={{ once: true, amount: 0.2 }}
               initial="offscreen"
               whileInView="onscreen"
-              variants={variants_right}
+              variants={{
+                offscreen: {
+                  x: isMobile ? "50%" : "90%",
+                },
+                onscreen: {
+                  x: 0,
+                  transition: {
+                    type: "spring",
+                    duration: 1,
+                    delay: 0.1,
+                  },
+                },
+              }}
             >
               <div className="flex flex-1 justify-center items-center max-w-md md:text-left  whitespace-normal pt-5 text-white">
                 <ul>
@@ -232,12 +272,27 @@ function App() {
             <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded">
               <div className="px-4 py-2 sm:py-5 flex-auto">
                 <div className="tab-content tab-space px-0 sm:px-6">
-                  <div
+                  <motion.div
+                    viewport={{ once: true, amount: 0.2 }}
+                    initial="offscreen"
+                    whileInView="onscreen"
                     className={`${
                       activeTab === "left"
                         ? "block md:flex sm:flew-row"
                         : "hidden"
                     }`}
+                    variants={{
+                      offscreen: {
+                        x: isMobile ? "50%" : "90%",
+                      },
+                      onscreen: {
+                        x: 0,
+                        transition: {
+                          type: "spring",
+                          duration: 0.7,
+                        },
+                      },
+                    }}
                   >
                     <div className=" max-w-lg  md:text-left  whitespace-normal pt-5">
                       <ul>
@@ -296,8 +351,28 @@ function App() {
                       srcset=""
                       className="mx-auto md:ml-auto object-contain"
                     />
-                  </div>
-                  <div
+                  </motion.div>
+                  <motion.div
+                    viewport={{ once: true, amount: 0.2 }}
+                    initial="offscreen"
+                    whileInView="onscreen"
+                    className={`${
+                      activeTab === "left"
+                        ? "block md:flex sm:flew-row"
+                        : "hidden"
+                    }`}
+                    variants={{
+                      offscreen: {
+                        x: isMobile ? "50%" : "90%",
+                      },
+                      onscreen: {
+                        x: 0,
+                        transition: {
+                          type: "spring",
+                          duration: 0.7,
+                        },
+                      },
+                    }}
                     className={`${
                       activeTab === "right"
                         ? "block md:flex sm:flew-row"
@@ -341,7 +416,7 @@ function App() {
                       srcset=""
                       className="mx-auto md:ml-auto object-contain"
                     />
-                  </div>
+                  </motion.div>
                 </div>
               </div>
             </div>
@@ -352,12 +427,12 @@ function App() {
       {/* FoxyCoin */}
       <section
         id="foxycoin"
-        className="max-w-300 mx-auto pt-9 pb-9 px-4 md:px-8"
+        className="max-w-300 mx-auto pt-9 pb-9 px-4 md:px-8 items-center"
       >
         <div>
           <div>
             <Heading variants="h2" className="text-center">
-              FoxyCoin Tokentext-center{" "}
+              FoxyCoin Token
             </Heading>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8 text-white">
@@ -365,11 +440,29 @@ function App() {
               viewport={{ once: true, amount: 0.2 }}
               initial="offscreen"
               whileInView="onscreen"
-              variants={variants_right}
+              variants={{
+                offscreen: {
+                  // x: isMobile ? "50%" : "90%",
+                  scale: 0.5,
+                },
+                onscreen: {
+                  scale: 1,
+                  transition: {
+                    type: "spring",
+                    duration: 0.7,
+                  },
+                },
+              }}
             >
-              <div className="flex flex-1 justify-center items-center lg:justify-start">
+              <div className="mx-auto w-4/5">
                 <div>
-                  <img src={FoxycoinChart} alt="foxycoin chart" />
+                  {/* <img src={FoxycoinChart} alt="foxycoin chart" /> */}
+                  <Chart
+                    width={"100%"}
+                    options={chartData.options}
+                    series={chartData.series}
+                    type="donut"
+                  />
                 </div>
               </div>
             </motion.div>
@@ -377,9 +470,22 @@ function App() {
               viewport={{ once: true, amount: 0.2 }}
               initial="offscreen"
               whileInView="onscreen"
-              variants={variants_left}
+              variants={{
+                offscreen: {
+                  // x: isMobile ? "-50%" : "-90%",
+                  scale: 0.5,
+                },
+                onscreen: {
+                  scale: 1,
+                  x: 0,
+                  transition: {
+                    type: "spring",
+                    duration: 0.7,
+                  },
+                },
+              }}
             >
-              <div className="flex flex-1  justify-center items-center max-w-md m-auto md:text-left  whitespace-normal pt-5">
+              <div className="flex flex-1 justify-center items-center max-w-md m-auto md:text-left  whitespace-normal pt-5">
                 <ul>
                   <li className="flex mb-5 text-white">
                     <div>
@@ -452,7 +558,7 @@ function App() {
       <section id="wallet" className="max-w-300 mx-auto pt-9 pb-9 px-4 md:px-8">
         <div className="pb-4">
           <Heading variants="h2" className="text-center">
-            Soulofox Walletstext-center{" "}
+            Soulofox Wallets
           </Heading>
         </div>
         <div className="text-white">
@@ -462,40 +568,156 @@ function App() {
             </Paragraph>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8 mb-4">
-            <div>
+            <motion.div
+              viewport={{ once: true, amount: 0.2 }}
+              initial="offscreen"
+              whileInView="onscreen"
+              variants={{
+                offscreen: {
+                  // x: isMobile ? "50%" : "90%",
+                  y: 100,
+                  opacity: 0,
+                },
+                onscreen: {
+                  opacity: 1,
+                  y: 0,
+                  transition: {
+                    type: "spring",
+                    duration: 2,
+                  },
+                },
+              }}
+            >
               <Paragraph>
                 1. Community Wallet (SOLANA balance)20% NFT sales (buyback floor
                 price/NFT Burn)2% Secondary NFT sales40% Community NFT store
                 income
               </Paragraph>
-            </div>
-            <div>
+            </motion.div>
+            <motion.div
+              viewport={{ once: true, amount: 0.2 }}
+              initial="offscreen"
+              whileInView="onscreen"
+              variants={{
+                offscreen: {
+                  // x: isMobile ? "50%" : "90%",
+                  y: 100,
+                  opacity: 0,
+                },
+                onscreen: {
+                  y: 0,
+                  opacity: 1,
+                  transition: {
+                    type: "spring",
+                    duration: 2,
+                  },
+                },
+              }}
+            >
               <img src={Cld} alt="" srcset="" />
-            </div>
+            </motion.div>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8 mb-4">
-            <div className="order-2 lg:order-1">
+            <motion.div
+              viewport={{ once: true, amount: 0.2 }}
+              initial="offscreen"
+              whileInView="onscreen"
+              className="order-2 lg:order-1"
+              variants={{
+                offscreen: {
+                  // x: isMobile ? "50%" : "90%",
+                  y: 100,
+                  opacity: 0,
+                },
+                onscreen: {
+                  opacity: 1,
+                  y: 0,
+                  transition: {
+                    type: "spring",
+                    duration: 2,
+                  },
+                },
+              }}
+            >
               <img src={Paws} alt="" srcset="" className="pb-4" />
-            </div>
-            <div className="order-1 lg:order-2">
+            </motion.div>
+            <motion.div
+              viewport={{ once: true, amount: 0.2 }}
+              initial="offscreen"
+              whileInView="onscreen"
+              className="order-1 lg:order-2"
+              variants={{
+                offscreen: {
+                  // x: isMobile ? "50%" : "90%",
+                  y: 100,
+                  opacity: 0,
+                },
+                onscreen: {
+                  opacity: 1,
+                  y: 0,
+                  transition: {
+                    type: "spring",
+                    duration: 2,
+                  },
+                },
+              }}
+            >
               <Paragraph>
                 2. Marketing/Partnership wallet (FOXYCOIN balance)10% Token
                 supply2% P2P marketplace commissions1% Secondary NFT sales10%
                 Community NFT store income
               </Paragraph>
-            </div>
+            </motion.div>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8 mb-4">
-            <div>
+            <motion.div
+              viewport={{ once: true, amount: 0.2 }}
+              initial="offscreen"
+              whileInView="onscreen"
+              variants={{
+                offscreen: {
+                  // x: isMobile ? "50%" : "90%",
+                  y: 100,
+                  opacity: 0,
+                },
+                onscreen: {
+                  opacity: 1,
+                  y: 0,
+                  transition: {
+                    type: "spring",
+                    duration: 2,
+                  },
+                },
+              }}
+            >
               <Paragraph>
                 3. Game Ecosystem Wallet (FOXYCOIN balance)8% P2P marketplace
                 commissions30% Token Supply10% Community NFT store income100% In
                 game store income
               </Paragraph>
-            </div>
-            <div>
+            </motion.div>
+            <motion.div
+              viewport={{ once: true, amount: 0.2 }}
+              initial="offscreen"
+              whileInView="onscreen"
+              variants={{
+                offscreen: {
+                  // x: isMobile ? "50%" : "90%",
+                  y: 100,
+                  opacity: 0,
+                },
+                onscreen: {
+                  opacity: 1,
+                  y: 0,
+                  transition: {
+                    type: "spring",
+                    duration: 2,
+                  },
+                },
+              }}
+            >
               <img src={MoneyBag} alt="" srcset="" />
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -543,7 +765,18 @@ function App() {
               viewport={{ once: true, amount: 0.2 }}
               initial="offscreen"
               whileInView="onscreen"
-              variants={variants_left}
+              variants={{
+                offscreen: {
+                  x: isMobile ? "-50%" : "-90%",
+                },
+                onscreen: {
+                  x: 0,
+                  transition: {
+                    type: "spring",
+                    duration: 0.7,
+                  },
+                },
+              }}
               className="md:order-2"
             >
               <div className="max-w-lg mx-auto ">
@@ -554,7 +787,18 @@ function App() {
               viewport={{ once: true, amount: 0.2 }}
               initial="offscreen"
               whileInView="onscreen"
-              variants={variants_right}
+              variants={{
+                offscreen: {
+                  x: isMobile ? "50%" : "90%",
+                },
+                onscreen: {
+                  x: 0,
+                  transition: {
+                    type: "spring",
+                    duration: 0.7,
+                  },
+                },
+              }}
             >
               <div className="max-w-md m-auto md:text-left whitespace-normal lg:justify-end text-white">
                 <ul>
@@ -672,7 +916,20 @@ function App() {
             viewport={{ once: true, amount: 0.2 }}
             initial="offscreen"
             whileInView="onscreen"
-            variants={variants_left}
+            variants={{
+              offscreen: {
+                // x: isMobile ? "-50%" : "-90%",
+                scale: 0.4,
+              },
+              onscreen: {
+                scale: 1,
+                x: 0,
+                transition: {
+                  type: "spring",
+                  duration: 0.7,
+                },
+              },
+            }}
           >
             <div>
               <div className="flex flex-col justify-center items-center ">
@@ -696,7 +953,20 @@ function App() {
             viewport={{ once: true, amount: 0.2 }}
             initial="offscreen"
             whileInView="onscreen"
-            variants={variants_right}
+            variants={{
+              offscreen: {
+                // x: isMobile ? "-50%" : "-90%",
+                scale: 0.4,
+              },
+              onscreen: {
+                scale: 1,
+                x: 0,
+                transition: {
+                  type: "spring",
+                  duration: 0.7,
+                },
+              },
+            }}
           >
             <div>
               <div className="flex flex-col justify-center items-center ">
@@ -725,7 +995,27 @@ function App() {
             <Heading className="text-center">Team</Heading>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 auto-rows-auto gap-4 md:gap-8 md:grid-cols-3 mt-4">
-            <div className="flex flex-col justify-center items-center">
+            <motion.div
+              viewport={{ once: true, amount: 0.2 }}
+              initial="offscreen"
+              whileInView="onscreen"
+              variants={{
+                offscreen: {
+                  // x: isMobile ? "50%" : "90%",
+                  y: 100,
+                  opacity: 0,
+                },
+                onscreen: {
+                  opacity: 1,
+                  y: 0,
+                  transition: {
+                    type: "spring",
+                    duration: 2,
+                  },
+                },
+              }}
+              className="flex flex-col justify-center items-center"
+            >
               <div>
                 <img src={TeamJay} alt="Jay" />
               </div>
@@ -736,8 +1026,28 @@ function App() {
                 Game Designer
               </Paragraph>
               <Paragraph className="text-white">Singapore</Paragraph>
-            </div>
-            <div className="flex flex-col justify-center items-center">
+            </motion.div>
+            <motion.div
+              viewport={{ once: true, amount: 0.2 }}
+              initial="offscreen"
+              whileInView="onscreen"
+              variants={{
+                offscreen: {
+                  // x: isMobile ? "50%" : "90%",
+                  y: 140,
+                  opacity: 0,
+                },
+                onscreen: {
+                  opacity: 1,
+                  y: 0,
+                  transition: {
+                    type: "spring",
+                    duration: 2.2,
+                  },
+                },
+              }}
+              className="flex flex-col justify-center items-center"
+            >
               <div>
                 <img src={TeamShin} alt="Shin" />
               </div>
@@ -748,8 +1058,28 @@ function App() {
                 Lead Artist
               </Paragraph>
               <Paragraph className="text-white">Taiwan</Paragraph>
-            </div>
-            <div className="flex flex-col justify-center items-center">
+            </motion.div>
+            <motion.div
+              viewport={{ once: true, amount: 0.2 }}
+              initial="offscreen"
+              whileInView="onscreen"
+              variants={{
+                offscreen: {
+                  // x: isMobile ? "50%" : "90%",
+                  y: 180,
+                  opacity: 0,
+                },
+                onscreen: {
+                  opacity: 1,
+                  y: 0,
+                  transition: {
+                    type: "spring",
+                    duration: 2.4,
+                  },
+                },
+              }}
+              className="flex flex-col justify-center items-center"
+            >
               <div>
                 <img src={TeamArun} alt="Arun" />
               </div>
@@ -760,8 +1090,28 @@ function App() {
                 Blockchain Developer
               </Paragraph>
               <Paragraph className="text-white">Germany</Paragraph>
-            </div>
-            <div className="flex flex-col justify-center items-center">
+            </motion.div>
+            <motion.div
+              viewport={{ once: true, amount: 0.2 }}
+              initial="offscreen"
+              whileInView="onscreen"
+              variants={{
+                offscreen: {
+                  // x: isMobile ? "50%" : "90%",
+                  y: 100,
+                  opacity: 0,
+                },
+                onscreen: {
+                  opacity: 1,
+                  y: 0,
+                  transition: {
+                    type: "spring",
+                    duration: 2,
+                  },
+                },
+              }}
+              className="flex flex-col justify-center items-center"
+            >
               <div>
                 <img src={TeamMaurice} alt="Maurice" />
               </div>
@@ -772,8 +1122,28 @@ function App() {
                 Marketing Lead
               </Paragraph>
               <Paragraph className="text-white">Germany/Mexico</Paragraph>
-            </div>
-            <div className="flex flex-col justify-center items-center">
+            </motion.div>
+            <motion.div
+              viewport={{ once: true, amount: 0.2 }}
+              initial="offscreen"
+              whileInView="onscreen"
+              variants={{
+                offscreen: {
+                  // x: isMobile ? "50%" : "90%",
+                  y: 140,
+                  opacity: 0,
+                },
+                onscreen: {
+                  opacity: 1,
+                  y: 0,
+                  transition: {
+                    type: "spring",
+                    duration: 2.2,
+                  },
+                },
+              }}
+              className="flex flex-col justify-center items-center"
+            >
               <div>
                 <img src={TeamAndrew} alt="Andrew" />
               </div>
@@ -784,8 +1154,28 @@ function App() {
                 Animation
               </Paragraph>
               <Paragraph className="text-white">Malaysia</Paragraph>
-            </div>
-            <div className="flex flex-col justify-center items-center">
+            </motion.div>
+            <motion.div
+              viewport={{ once: true, amount: 0.2 }}
+              initial="offscreen"
+              whileInView="onscreen"
+              variants={{
+                offscreen: {
+                  // x: isMobile ? "50%" : "90%",
+                  y: 180,
+                  opacity: 0,
+                },
+                onscreen: {
+                  opacity: 1,
+                  y: 0,
+                  transition: {
+                    type: "spring",
+                    duration: 2.4,
+                  },
+                },
+              }}
+              className="flex flex-col justify-center items-center"
+            >
               <div>
                 <img src={TeamVolume} alt="Volume" />
               </div>
@@ -796,7 +1186,7 @@ function App() {
                 Frontend Developer
               </Paragraph>
               <Paragraph className="text-white">Malaysia</Paragraph>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
