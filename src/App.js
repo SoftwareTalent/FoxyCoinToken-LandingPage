@@ -23,8 +23,6 @@ import TeamMaurice from "./assets/img/team_maurice.png";
 import TeamAndrew from "./assets/img/team_andrew.png";
 import TeamVolume from "./assets/img/team_volume.png";
 
-// Icons
-
 // Components
 import {
   Discord,
@@ -37,37 +35,82 @@ import {
 import Heading from "./components/elements/Typography/Heading";
 import Paragraph from "./components/elements/Typography/Paragraph";
 
+// 3rd Party
+import { motion } from "framer-motion/dist/framer-motion";
+
 function App() {
+  const isMobile = window.innerWidth < 768;
+
+  const variants_right = {
+    offscreen: {
+      x: isMobile ? "50%" : "90%",
+    },
+    onscreen: {
+      x: 0,
+      transition: {
+        type: "spring",
+        duration: 0.7,
+      },
+    },
+  };
+
+  const variants_left = {
+    offscreen: {
+      x: isMobile ? "-50%" : "-90%",
+    },
+    onscreen: {
+      x: 0,
+      transition: {
+        type: "spring",
+        duration: 0.7,
+      },
+    },
+  };
+
   const [activeTab, setActiveTab] = useState("left");
 
   return (
-    <main className="max-w-full min-h-screen bg-secondary font-Sanchez">
+    <main className="max-w-full min-h-screen bg-secondary font-Sanchez overflow-x-hidden">
       <Header />
       <section className="max-w-300 mx-auto pt-20 pb-9 px-4 md:px-8" id="home">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8">
-          <div className="flex flex-1 justify-center md:justify-start">
-            <div className="flex flex-col justify-center text-center pt-5 pb-5 md:text-left">
-              <Heading variants={"h1"}>
-                Let thetext-center Adventure Begin..
-              </Heading>
-              <Paragraph className="pb-9 pt-1 max-w-md text-white">
-                Welcome to the SouloFox token page!.
-              </Paragraph>
-              <div className="flex justify-center md:justify-start">
-                <a
-                  href="#"
-                  className="flex gap-2 justify-center items-center transition-all bg-primary hover:bg-primary-dark text-sm text-black font-bold py-2 px-4 rounded-sm tracking-wide w-full mt-5"
-                >
-                  Get Started
-                </a>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8 items-center">
+          <motion.div
+            viewport={{ once: true, amount: 0.2 }}
+            initial="offscreen"
+            whileInView="onscreen"
+            variants={variants_left}
+          >
+            <div className="flex flex-1 justify-center md:justify-start">
+              <div className="flex flex-col justify-center text-center pt-5 pb-5 md:text-left">
+                <Heading variants={"h1"}>
+                  Let thetext-center Adventure Begin..
+                </Heading>
+                <Paragraph className="pb-9 pt-1 max-w-md text-white">
+                  Welcome to the SouloFox token page!.
+                </Paragraph>
+                <div className="flex justify-center md:justify-start">
+                  <a
+                    href="#"
+                    className="flex gap-2 justify-center items-center transition-all bg-primary hover:bg-primary-dark text-sm text-black font-bold py-2 px-4 rounded-sm tracking-wide w-full mt-5"
+                  >
+                    Get Started
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="flex justify-center flex-1 md:justify-end">
-            <div className="max-w-lg">
-              <img src={LandBanner} alt="" />
+          </motion.div>
+          <motion.div
+            viewport={{ once: true, amount: 0.2 }}
+            initial="offscreen"
+            whileInView="onscreen"
+            variants={variants_right}
+          >
+            <div className="flex justify-center flex-1 md:justify-end">
+              <div className="max-w-lg">
+                <img src={LandBanner} alt="" />
+              </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -83,51 +126,66 @@ function App() {
             </Heading>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8">
-            <div className="flex flex-1 justify-center items-center lg:justify-start">
-              <div>
-                <img src={RunningFox} alt="running fox" />
+            <motion.div
+              viewport={{ once: true, amount: 0.2 }}
+              initial="offscreen"
+              whileInView="onscreen"
+              variants={variants_left}
+            >
+              <div className="flex flex-1 justify-center items-center lg:justify-start">
+                <div>
+                  <img src={RunningFox} alt="running fox" />
+                </div>
               </div>
-            </div>
-            <div className="flex flex-1 justify-center items-center max-w-md md:text-left  whitespace-normal pt-5 text-white">
-              <ul>
-                <li className="flex mb-5">
-                  <div className="mr-4 text-200">
-                    <MinusSM className={"text-primary-darkest"} />
-                  </div>
-                  <div>
-                    <Paragraph>
-                      Members of our team are all big 2D RPG fans, so in this
-                      project we are aiming to build a RPG game where NFT owners
-                      can use their NFT as character in the game and earn
-                      FoxyCoin.
-                    </Paragraph>
-                  </div>
-                </li>
-                <li className="flex mb-5">
-                  <div className="mr-4 text-200">
-                    <MinusSM className={"text-primary-darkest"} />
-                  </div>
-                  <div>
-                    <Paragraph>
-                      The game will be a multiplayer game where foxians can
-                      socialize, level up through defeating enemies, join raids,
-                      earn FoxyCoin and much more.
-                    </Paragraph>
-                  </div>
-                </li>
-                <li className="flex mb-5">
-                  <div className="mr-4 text-200">
-                    <MinusSM className={"text-primary-darkest"} />
-                  </div>
-                  <div>
-                    <Paragraph>
-                      We want players to feel the nostalgia of 2D RPG and bring
-                      back memories that thrilled their heart in the past.
-                    </Paragraph>
-                  </div>
-                </li>
-              </ul>
-            </div>
+            </motion.div>
+            <motion.div
+              viewport={{ once: true, amount: 0.2 }}
+              initial="offscreen"
+              whileInView="onscreen"
+              variants={variants_right}
+            >
+              <div className="flex flex-1 justify-center items-center max-w-md md:text-left  whitespace-normal pt-5 text-white">
+                <ul>
+                  <li className="flex mb-5">
+                    <div className="mr-4 text-200">
+                      <MinusSM className={"text-primary-darkest"} />
+                    </div>
+                    <div>
+                      <Paragraph>
+                        Members of our team are all big 2D RPG fans, so in this
+                        project we are aiming to build a RPG game where NFT
+                        owners can use their NFT as character in the game and
+                        earn FoxyCoin.
+                      </Paragraph>
+                    </div>
+                  </li>
+                  <li className="flex mb-5">
+                    <div className="mr-4 text-200">
+                      <MinusSM className={"text-primary-darkest"} />
+                    </div>
+                    <div>
+                      <Paragraph>
+                        The game will be a multiplayer game where foxians can
+                        socialize, level up through defeating enemies, join
+                        raids, earn FoxyCoin and much more.
+                      </Paragraph>
+                    </div>
+                  </li>
+                  <li className="flex mb-5">
+                    <div className="mr-4 text-200">
+                      <MinusSM className={"text-primary-darkest"} />
+                    </div>
+                    <div>
+                      <Paragraph>
+                        We want players to feel the nostalgia of 2D RPG and
+                        bring back memories that thrilled their heart in the
+                        past.
+                      </Paragraph>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -303,75 +361,89 @@ function App() {
             </Heading>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8 text-white">
-            <div className="flex flex-1 justify-center items-center lg:justify-start">
-              <div>
-                <img src={FoxycoinChart} alt="foxycoin chart" />
+            <motion.div
+              viewport={{ once: true, amount: 0.2 }}
+              initial="offscreen"
+              whileInView="onscreen"
+              variants={variants_right}
+            >
+              <div className="flex flex-1 justify-center items-center lg:justify-start">
+                <div>
+                  <img src={FoxycoinChart} alt="foxycoin chart" />
+                </div>
               </div>
-            </div>
-            <div className="flex flex-1  justify-center items-center max-w-md m-auto md:text-left  whitespace-normal pt-5">
-              <ul>
-                <li className="flex mb-5 text-white">
-                  <div>
-                    <Paragraph>Total Supply: 1 Billion Tokens</Paragraph>
-                  </div>
-                </li>
-                <li className="flex mb-5">
-                  <div>
-                    <Paragraph>Key Token Utilities:</Paragraph>
-                  </div>
-                </li>
-                <li className="flex mb-5">
-                  <div className="mr-4 text-200">
-                    <MinusSM className="text-primary-darkest" />
-                  </div>
-                  <div>
-                    <Paragraph>In game store</Paragraph>
-                  </div>
-                </li>
-                <li className="flex mb-5">
-                  <div className="mr-4 text-200">
-                    <MinusSM className="text-primary-darkest" />
-                  </div>
-                  <div>
-                    <Paragraph>P2P marketplace</Paragraph>
-                  </div>
-                </li>
-                <li className="flex mb-5">
-                  <div className="mr-4 text-200">
-                    <MinusSM className="text-primary-darkest" />
-                  </div>
-                  <div>
-                    <Paragraph>Community NFT Store</Paragraph>
-                  </div>
-                </li>
-                <li className="flex mb-5">
-                  <div className="mr-4 text-200">
-                    <MinusSM className="text-primary-darkest" />
-                  </div>
-                  <div>
-                    <Paragraph>Staking Rewards</Paragraph>
-                  </div>
-                </li>
-                <li className="flex mb-5">
-                  <div className="mr-4 text-200">
-                    <MinusSM className="text-primary-darkest" />
-                  </div>
-                  <div>
-                    <Paragraph>
-                      NFT drops from future Gen based on staked levels
-                    </Paragraph>
-                  </div>
-                </li>
-                <li className="flex mb-5">
-                  <div className="mr-4 text-200">
-                    <MinusSM className="text-primary-darkest" />
-                  </div>
-                  <div>
-                    <Paragraph>Discounts on Stores</Paragraph>
-                  </div>
-                </li>
-              </ul>
-            </div>
+            </motion.div>
+            <motion.div
+              viewport={{ once: true, amount: 0.2 }}
+              initial="offscreen"
+              whileInView="onscreen"
+              variants={variants_left}
+            >
+              <div className="flex flex-1  justify-center items-center max-w-md m-auto md:text-left  whitespace-normal pt-5">
+                <ul>
+                  <li className="flex mb-5 text-white">
+                    <div>
+                      <Paragraph>Total Supply: 1 Billion Tokens</Paragraph>
+                    </div>
+                  </li>
+                  <li className="flex mb-5">
+                    <div>
+                      <Paragraph>Key Token Utilities:</Paragraph>
+                    </div>
+                  </li>
+                  <li className="flex mb-5">
+                    <div className="mr-4 text-200">
+                      <MinusSM className="text-primary-darkest" />
+                    </div>
+                    <div>
+                      <Paragraph>In game store</Paragraph>
+                    </div>
+                  </li>
+                  <li className="flex mb-5">
+                    <div className="mr-4 text-200">
+                      <MinusSM className="text-primary-darkest" />
+                    </div>
+                    <div>
+                      <Paragraph>P2P marketplace</Paragraph>
+                    </div>
+                  </li>
+                  <li className="flex mb-5">
+                    <div className="mr-4 text-200">
+                      <MinusSM className="text-primary-darkest" />
+                    </div>
+                    <div>
+                      <Paragraph>Community NFT Store</Paragraph>
+                    </div>
+                  </li>
+                  <li className="flex mb-5">
+                    <div className="mr-4 text-200">
+                      <MinusSM className="text-primary-darkest" />
+                    </div>
+                    <div>
+                      <Paragraph>Staking Rewards</Paragraph>
+                    </div>
+                  </li>
+                  <li className="flex mb-5">
+                    <div className="mr-4 text-200">
+                      <MinusSM className="text-primary-darkest" />
+                    </div>
+                    <div>
+                      <Paragraph>
+                        NFT drops from future Gen based on staked levels
+                      </Paragraph>
+                    </div>
+                  </li>
+                  <li className="flex mb-5">
+                    <div className="mr-4 text-200">
+                      <MinusSM className="text-primary-darkest" />
+                    </div>
+                    <div>
+                      <Paragraph>Discounts on Stores</Paragraph>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -466,47 +538,62 @@ function App() {
           <div>
             <Heading className="text-center">Land Ownership</Heading>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 mt-4">
-            <div className="max-w-lg mx-auto md:order-2">
-              <img src={Landmap} alt="land ownership map" />
-            </div>
-            <div className="max-w-md m-auto md:text-left whitespace-normal lg:justify-end text-white">
-              <ul>
-                <li className="flex mb-5">
-                  <div className="mr-4 text-200">
-                    <MinusSM className="text-primary-darkest" />
-                  </div>
-                  <div>
-                    <p>
-                      Players will be able to acquire a piece of land in the
-                      game world using FoxyCoin.
-                    </p>
-                  </div>
-                </li>
-                <li className="flex mb-5">
-                  <div className="mr-4 text-200">
-                    <MinusSM className="text-primary-darkest" />
-                  </div>
-                  <div>
-                    <p>
-                      Owning the land unlocks the ability of generate dungeons.
-                      Raids will be randomly selected on one of the dungeons
-                      daily.
-                    </p>
-                  </div>
-                </li>
-                <li className="flex mb-5">
-                  <div className="mr-4 text-200">
-                    <MinusSM className="text-primary-darkest" />
-                  </div>
-                  <div>
-                    <p>
-                      10% of the raids income will belong to the land owners.
-                    </p>
-                  </div>
-                </li>
-              </ul>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 mt-4 items-center">
+            <motion.div
+              viewport={{ once: true, amount: 0.2 }}
+              initial="offscreen"
+              whileInView="onscreen"
+              variants={variants_left}
+              className="md:order-2"
+            >
+              <div className="max-w-lg mx-auto ">
+                <img src={Landmap} alt="land ownership map" />
+              </div>
+            </motion.div>
+            <motion.div
+              viewport={{ once: true, amount: 0.2 }}
+              initial="offscreen"
+              whileInView="onscreen"
+              variants={variants_right}
+            >
+              <div className="max-w-md m-auto md:text-left whitespace-normal lg:justify-end text-white">
+                <ul>
+                  <li className="flex mb-5">
+                    <div className="mr-4 text-200">
+                      <MinusSM className="text-primary-darkest" />
+                    </div>
+                    <div>
+                      <p>
+                        Players will be able to acquire a piece of land in the
+                        game world using FoxyCoin.
+                      </p>
+                    </div>
+                  </li>
+                  <li className="flex mb-5">
+                    <div className="mr-4 text-200">
+                      <MinusSM className="text-primary-darkest" />
+                    </div>
+                    <div>
+                      <p>
+                        Owning the land unlocks the ability of generate
+                        dungeons. Raids will be randomly selected on one of the
+                        dungeons daily.
+                      </p>
+                    </div>
+                  </li>
+                  <li className="flex mb-5">
+                    <div className="mr-4 text-200">
+                      <MinusSM className="text-primary-darkest" />
+                    </div>
+                    <div>
+                      <p>
+                        10% of the raids income will belong to the land owners.
+                      </p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -581,39 +668,53 @@ function App() {
             backgroundSize: "70%",
           }}
         >
-          <div>
-            <div className="flex flex-col justify-center items-center ">
-              <div className="text-center text-primary-darker">
-                2022 Q1
-                <Paragraph className="m-2 mb-10 text-white">
-                  Merchandise shop will be opened. Land ownership feature will
-                  be released. Game beta version will be released.
-                </Paragraph>
-                2021 OCT
-                <Paragraph className="m-2 text-white">
-                  2,222 Foxian NFT will be released. Community wallet will be
-                  setup for our foxians members.
-                </Paragraph>
+          <motion.div
+            viewport={{ once: true, amount: 0.2 }}
+            initial="offscreen"
+            whileInView="onscreen"
+            variants={variants_left}
+          >
+            <div>
+              <div className="flex flex-col justify-center items-center ">
+                <div className="text-center text-primary-darker">
+                  2022 Q1
+                  <Paragraph className="m-2 mb-10 text-white">
+                    Merchandise shop will be opened. Land ownership feature will
+                    be released. Game beta version will be released.
+                  </Paragraph>
+                  2021 OCT
+                  <Paragraph className="m-2 text-white">
+                    2,222 Foxian NFT will be released. Community wallet will be
+                    setup for our foxians members.
+                  </Paragraph>
+                </div>
               </div>
             </div>
-          </div>
+          </motion.div>
           <div className="hidden md:block"></div>
-          <div>
-            <div className="flex flex-col justify-center items-center ">
-              <div className="text-center text-primary-darker">
-                2022 Q2
-                <Paragraph className="m-2 mb-10 text-white">
-                  Full game released with play to earn feature.
-                </Paragraph>
-                2021 Q4
-                <Paragraph className="m-2 text-white">
-                  FoxyCoin token will be released and NFT owners will start
-                  receiving token by holding the NFTs. Staking Pool will be
-                  launched.
-                </Paragraph>
+          <motion.div
+            viewport={{ once: true, amount: 0.2 }}
+            initial="offscreen"
+            whileInView="onscreen"
+            variants={variants_right}
+          >
+            <div>
+              <div className="flex flex-col justify-center items-center ">
+                <div className="text-center text-primary-darker">
+                  2022 Q2
+                  <Paragraph className="m-2 mb-10 text-white">
+                    Full game released with play to earn feature.
+                  </Paragraph>
+                  2021 Q4
+                  <Paragraph className="m-2 text-white">
+                    FoxyCoin token will be released and NFT owners will start
+                    receiving token by holding the NFTs. Staking Pool will be
+                    launched.
+                  </Paragraph>
+                </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
