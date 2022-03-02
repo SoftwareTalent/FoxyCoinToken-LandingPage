@@ -55,8 +55,8 @@ function App() {
         "Initial Liquidity",
         "IEO/Public sale",
         "Airdop to NFT holders",
-        "Marketing/Partnership",
-        "Team",
+        "Marketing/Partnership ",
+        "Team ",
       ],
       responsive: [
         {
